@@ -1,43 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
-const FormUser = () => {
-  const [username, setUsername] = useState('');
-  const [submitted, setSubmitted] = useState(false);
+const FormUser = ({ onSubmitUserForm }) => {
+  const [userName, setUserName] = useState('')
+  const [submitted, setSubmitted] = useState(false)
 
-  const handleUsernameChange = event => {
-    setUsername(event.target.value);
-  };
+  const userNameChange = (e) => {
+    setUserName(e.target.value)
+  }
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    setSubmitted(true);
-
-    // Validate before submitting
-    if (username.trim() === '') {
-      return; // Do not submit if the username is empty
+  const eventSubmit = (e) => {
+    e.preventDefault()
+    if (userName.trim() !== '') {
+      onSubmitUserForm(userName)
+      setSubmitted(true)
+      localStorage.setItem('userName', userName)
+      alert('User' + userName + ' saved locally')
     }
-
-    // Perform further actions here, such as sending the data to a server.
-  };
-
+  }
   return (
-    <div className="container mt-5">
-      <form onSubmit={handleSubmit}>
+    <div className="container col-5 mt-5">
+      <form onSubmit={eventSubmit}>
         <div className="form-group">
-          <label htmlFor="username">Username:</label>
+          <label htmlFor="username">Ingrese nombre de usuario:</label>
           <input
             type="text"
-            className={`form-control ${submitted && username.trim() === '' ? 'is-invalid' : ''}`}
+            className={`form-control ${
+              submitted && userName.trim() === '' ? 'is-invalid' : ''
+            }`}
             id="username"
-            value={username}
-            onChange={handleUsernameChange}
+            value={userName}
+            onChange={userNameChange}
+            required
           />
-          {submitted && username.trim() === '' && <div className="invalid-feedback">Username is required.</div>}
+          {submitted && userName.trim() === '' && (
+            <div className="invalid-feedback">Username is required.</div>
+          )}
         </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <br />
+        <button type="submit" className="btn btn-primary">
+          Guardar
+        </button>
       </form>
     </div>
-  );
-};
+  )
+}
 
 export default FormUser

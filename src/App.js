@@ -5,28 +5,8 @@ import SingleCard from './components/SingleCard'
 import AlertMessage from './components/AlertMessage'
 import axios from 'axios'
 import LottieAnimation from './components/LottieAnimation'
-
-
-// const cardImages = [
-//   {
-//     src: '/img/helmet-1.png',
-//   },
-//   {
-//     src: '/img/potion-1.png',
-//   },
-//   {
-//     src: '/img/ring-1.png',
-//   },
-//   {
-//     src: '/img/scroll-1.png',
-//   },
-//   {
-//     src: '/img/shield-1.png',
-//   },
-//   {
-//     src: '/img/sword-1.png',
-//   },
-// ]
+import FormUser from './components/FormUser'
+import Header from './components/Header'
 
 function App() {
   const [cards, setCards] = useState([])
@@ -36,20 +16,16 @@ function App() {
   const [choiseTwo, setChoiceTwo] = useState(null)
   const [disabled, setDisabled] = useState(false)
   const [showAlert, setShowAlert] = useState(false)
-  const [name, setName] = useState('')
   const [storeName, setStoreName] = useState('')
-  //const [entriesData,setEntries] = useState([])
   const [animals, setAnimals] = useState([])
 
+  useEffect(() => {
+    const fetchingEntries = async () => {
+      const apiURL =
+        'https://fed-team.modyo.cloud/api/content/spaces/animals/types/game/entries?per_page=10'
 
-  useEffect(() =>{ 
-   
-    const fetchingEntries = async() => {
-    
-      const apiURL = 'https://fed-team.modyo.cloud/api/content/spaces/animals/types/game/entries?per_page=20'
-      
       try {
-        const response = await axios.get(apiURL);
+        const response = await axios.get(apiURL)
         const newEntriesData = await response.data.entries.map((entry) => ({
           src: entry.fields.image.url,
         }))
@@ -58,22 +34,19 @@ function App() {
         console.log(error)
       }
     }
-    fetchingEntries();
-    //shuffeCards();
-  },[storeName])
-
+    fetchingEntries()
+  }, [storeName])
 
   useEffect(() => {
-    if(animals.length > 0) {
-      if(matchedCount === animals.length) {
-        setShowAlert(true);
+    if (animals.length > 0) {
+      if (matchedCount === animals.length) {
+        setShowAlert(true)
         resetTurn()
-      }else{
-        setShowAlert(false);
+      } else {
+        setShowAlert(false)
       }
     }
-   
-  },[matchedCount,animals])
+  }, [matchedCount, animals])
   //compare 2 selected cards
   useEffect(() => {
     if (choiceOne && choiseTwo) {
@@ -88,13 +61,12 @@ function App() {
                 ...card,
                 matched: true,
               }
-            } else {  
+            } else {
               return card
             }
           })
         })
         resetTurn()
-       
       } else {
         setTimeout(() => {
           resetTurn()
@@ -103,17 +75,13 @@ function App() {
     }
   }, [choiceOne, choiseTwo, matchedCount])
 
-  
   //validate user cache
   useEffect(() => {
-    
     const storedName = localStorage.getItem('userName')
     if (storedName) {
       setStoreName(storedName)
     }
   }, [storeName])
-
-  
 
   const resetTurn = () => {
     setChoiceOne(null)
@@ -122,67 +90,46 @@ function App() {
     setDisabled(false)
   }
   //shuffle cards
-  const shuffeCards =  () => {
-    
-    const cardsshuffled =  [...animals,...animals]
-        .sort(() => Math.random() - 0.5)
-        .map((card) => ({ ...card, id: Math.random(), matched: false }))
-        
-      setChoiceOne(null)
-      setChoiceTwo(null)
-      setCards(cardsshuffled)
-      setTurn(0)
-      setMatchedCount(0)
+  const shuffeCards = () => {
+    const cardsshuffled = [...animals, ...animals]
+      .sort(() => Math.random() - 0.5)
+      .map((card) => ({ ...card, id: Math.random(), matched: false }))
+
+    setChoiceOne(null)
+    setChoiceTwo(null)
+    setCards(cardsshuffled)
+    setTurn(0)
+    setMatchedCount(0)
   }
 
   const handleChoice = (card) => {
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card)
   }
 
- 
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    localStorage.setItem('userName', name)
-    setStoreName(name)
-    alert('User' + name + ' saved locally')
+  const onSubmitUserForm = (userName) => {
+    localStorage.setItem('userName', userName)
+    setStoreName(userName)
+    alert('User' + userName + ' saved locally')
   }
-  const handleChangeName = (e) => {
-    setName(e.target.value)
-  }
-  
-  
 
   return (
     <div className="App">
-      <h1>Memory Card</h1>
+      <h1>Juego de memoria</h1>
       <div className="formUser">
         {storeName ? (
           <div className="container">
-            <p>Hola, {storeName}!</p>
-            <button onClick={shuffeCards}>Nuevo Juego</button>
-            
-            
-            <table className="table table-sm table-style">
-              <thead>
-                <tr>
-                  <th>Errores</th>
-                  <th>Aciertos</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className='fail'>{turns}</td>
-                  <td className='matched'>{matchedCount}</td>
-                </tr>
-              </tbody>
-            </table>
-            
+            <Header
+              storeName={storeName}
+              shuffeCards={shuffeCards}
+              turns={turns}
+              matchedCount={matchedCount}
+            />
+
             {showAlert && (
               <AlertMessage
                 variant="primary"
-                message="Hi Luis, You have won!!!"
-                icon={ <LottieAnimation />}
+                message={`Muchas Felicidades ${storeName}, has ganado!!!`}
+                icon={<LottieAnimation />}
               />
             )}
             <div className="card-grid">
@@ -200,13 +147,7 @@ function App() {
             </div>
           </div>
         ) : (
-          <form onSubmit={handleSubmit}>
-            <label>
-              Ingrese su nombre : 
-              <br /><input type="text" value={name} onChange={handleChangeName} />
-            </label>
-            <button type="submit">Save Name</button>
-          </form>
+          <FormUser onSubmitUserForm={onSubmitUserForm} />
         )}
       </div>
     </div>

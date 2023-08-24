@@ -1,6 +1,6 @@
 import React from 'react'
 
-function AlertMessage({ variant, message,icon }) {
+function AlertMessage({ message, icon }) {
   return (
     <>
       <div className="container">
@@ -12,8 +12,7 @@ function AlertMessage({ variant, message,icon }) {
         </div>
       </div>
     </>
-  );
- 
+  )
 }
 
 export default AlertMessage

@@ -2,7 +2,9 @@
   max-width: 1440px;
   margin: 40px auto;
 }
-
+.App > h1 {
+  text-transform: uppercase;
+}
 button {
   background: none;
   border: 2px solid #fff;
@@ -27,21 +29,17 @@ button:hover {
 }
 
 .table-style {
- 
   margin-top: 10px;
   border-radius: 5px !important;
 }
 
-.fail{
- 
+.fail {
   color: #f80053 !important;
   font-size: 40px;
   font-weight: 700;
 }
-.matched{
- 
+.matched {
   color: #00bc38 !important;
   font-size: 40px;
   font-weight: 700;
 }
-
