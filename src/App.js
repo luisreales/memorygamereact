@@ -7,7 +7,10 @@ import axios from 'axios'
 import LottieAnimation from './components/LottieAnimation'
 import FormUser from './components/FormUser'
 import Header from './components/Header'
+/*
+Componente App  para el manejo completo del proyecto, el cual tiene todos los componentes hijos para ser utilizados en la interfaz.
 
+*/
 function App() {
   const [cards, setCards] = useState([])
   const [turns, setTurn] = useState(0)
@@ -19,6 +22,7 @@ function App() {
   const [storeName, setStoreName] = useState('')
   const [animals, setAnimals] = useState([])
 
+  /*useEffect, para el manejo del cargue de las imagenes del API */
   useEffect(() => {
     const fetchingEntries = async () => {
       const apiURL =
@@ -37,6 +41,7 @@ function App() {
     fetchingEntries()
   }, [storeName])
 
+  /*useEffect, para la verificacion que los animales seleccionados o que hicieron match sea igual al numero de animales en el listado */
   useEffect(() => {
     if (animals.length > 0) {
       if (matchedCount === animals.length) {
@@ -47,7 +52,8 @@ function App() {
       }
     }
   }, [matchedCount, animals])
-  //compare 2 selected cards
+
+  /*useEffect, para la verificacion de dos cartas, verificando que las imagenes sean las mismas, sino resetea las cartas y aumenta el contador de fallas o de aciertos segun el caso */
   useEffect(() => {
     if (choiceOne && choiseTwo) {
       setDisabled(true)
@@ -75,7 +81,7 @@ function App() {
     }
   }, [choiceOne, choiseTwo, matchedCount])
 
-  //validate user cache
+  /*useEffect, para la verificacion del usuario si esta o no en el cache almacenado */
   useEffect(() => {
     const storedName = localStorage.getItem('userName')
     if (storedName) {
@@ -83,13 +89,14 @@ function App() {
     }
   }, [storeName])
 
+  /*función resetTurn, para resetear valor de las selecciones y aumentar los turnos */
   const resetTurn = () => {
     setChoiceOne(null)
     setChoiceTwo(null)
     setTurn((prevTurns) => prevTurns + 1)
     setDisabled(false)
   }
-  //shuffle cards
+  //función shuffeCards,para combinar las cartas
   const shuffeCards = () => {
     const cardsshuffled = [...animals, ...animals]
       .sort(() => Math.random() - 0.5)
@@ -101,11 +108,11 @@ function App() {
     setTurn(0)
     setMatchedCount(0)
   }
-
+  //función handleChoice,para asignar el valor si es las carta 1 o la carta 2
   const handleChoice = (card) => {
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card)
   }
-
+  //función onSubmitUserForm,para asignar el valor del nombre de usuario en el localstorage despues de registro en el formulario
   const onSubmitUserForm = (userName) => {
     localStorage.setItem('userName', userName)
     setStoreName(userName)
@@ -127,7 +134,7 @@ function App() {
             {showAlert && (
               <AlertMessage
                 variant="primary"
-                message={`Muchas Felicidades ${storeName}, has ganado!!!`}
+                message={`Felicidades ${storeName}, has ganado!!!`}
                 icon={<LottieAnimation />}
               />
             )}

@@ -1,9 +1,11 @@
 import React from 'react'
 import './SingleCard.css'
+/*
+Componente SingleCard  para el manejo de las cartas que se muestran al usuario tanto la que cubre como la posterior.
+*/
 
 function SingleCard({ card, handleChoice, flipped, disabled }) {
   const handleClick = () => {
-    
     if (!disabled) {
       handleChoice(card)
     }

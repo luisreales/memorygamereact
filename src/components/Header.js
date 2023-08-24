@@ -1,5 +1,7 @@
 import React from 'react'
-
+/*
+Componente Header  para el manejo del encabezado titulo de bienvenida,  tablero de errores y aciertos y boton de nueva partida
+*/
 function Header({ storeName, shuffeCards, turns, matchedCount }) {
   return (
     <div>

@@ -1,71 +1,89 @@
-# Getting Started with Create React App
+# Juego de Memoria
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Instrucciones
+Construye el famoso juego de cartas conocido como Concentration o Memory.
 
-## Available Scripts
+El juego consiste en:
 
-In the project directory, you can run:
+La primera vez que un usuario ingrese al juego se le debe solicitar el nombre.
+
+Mostrar un tablero con un grupo de cartas boca abajo y un marcador con un espacio para mostrar:
+
+Errores.
+
+Aciertos.
+
+El jugador debe ir volteando las cartas intentando adivinar las cartas que se repiten.
+
+Todas las cartas se encuentran repetidas 1 vez en el tablero.
+
+Por cada turno el jugador debe voltear 2 cartas.
+
+Si las cartas no coinciden, se debe sumar 1 punto de error en el marcador. (Que pasa si la adivina al comienzo)
+
+Si las cartas coinciden, se debe sumar 1 punto de acierto en el marcador.
+
+Las cartas que el usuario acierte deben quedar boca arriba mientras que las cartas de error deben volver a quedar boca abajo.
+
+Una vez que el usuario logre adivinar todas las cartas, se debe mostrar un mensaje de felicitación con el nombre del usuario.
+
+Requerimientos tecnológicos del proyecto
+
+Codigo entendible hecho en javascript
+
+Vue/angular/react
+
+Bootstrap 5/tailwindcss
+
+Consideraciones
+
+Utiliza alguna metodología de nombramiento de clases css ej: BEM
+
+Todas las variables, métodos, clases o cualquier cosa relacionada con el código debe ser en inglés.
+
+Incluir instrucciones para probar el proyecto en local en un fichero de nombre README.md ubicado en la raíz del proyecto o en su defecto desplegarlo en algún ambiente explicando en el readme que método se utilizó para el despliegue.
+
+Para las imágenes de las cartas se deben mostrar fotos de animales. Las fotos de animales se deben obtener utilizando peticiones asíncronas desde el siguiente endpoint:
+
+GET: https://fed-team.modyo.cloud/api/content/spaces/animals/types/game/entries?per_page=20
+
+Las imágenes no vienen repetidas, así que la lógica para poder construir el juego debe quedar en el Frontend.
+
+El diseño se debe adaptar a los distintos tipos de dispositivos (diseño responsivo).
+
+Los test no son requeridos pero suman puntos si los agrega correctamente.
+
+Proponer un diseño de interfaz para la vista. Más abajo se muestra una imagen con una estructura de referencia, pero darle un estilo más personalizado sumará puntos.
+
+Preocupación por el performance y accesibilidad de la aplicación.
+
+El desafío se debe subir a Github en un proyecto público y se debe compartir el Link con tu recruiter.
+
+El nombre del usuario debe ser solicitado una vez y almacenado para futuros juegos (sin importar si se refresca el browser)
+
+## Ejecutar el proyecto local
+
+Para instalar los paquetes
+
+### `npm i`
+
+En el directorio del proyecto puede ejecutar
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Ejecutara el app en modo desarrollo
+Open [http://localhost:3000](http://localhost:3000)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Github
 
-### `npm test`
+La url del repositorio es https://github.com/luisreales/memorygamereact
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+https://memorygamereact-ten.vercel.app/
 
 ### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Fue desplegada la aplicacion en Vercel, en esta dirección esta el sitio publicado
 
-### `npm run build` fails to minify
+https://memorygamereact-ten.vercel.app/
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 # memorygamereact

@@ -1,5 +1,7 @@
 import React from 'react'
-
+/*
+Componente AlertMessage  para el manejo del mensaje que se le muestra al usuario cuando gana el partido
+*/
 function AlertMessage({ message, icon }) {
   return (
     <>

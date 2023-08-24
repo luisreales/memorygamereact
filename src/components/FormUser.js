@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 
+/*
+Componente FormUser  para el manejo del formulario de usuario, recibe la funcion onSubmitUserForm para setear el valor en el App.js
+*/
 const FormUser = ({ onSubmitUserForm }) => {
   const [userName, setUserName] = useState('')
   const [submitted, setSubmitted] = useState(false)
@@ -10,9 +13,10 @@ const FormUser = ({ onSubmitUserForm }) => {
 
   const eventSubmit = (e) => {
     e.preventDefault()
+    setSubmitted(true)
     if (userName.trim() !== '') {
       onSubmitUserForm(userName)
-      setSubmitted(true)
+
       localStorage.setItem('userName', userName)
     }
   }
@@ -29,10 +33,9 @@ const FormUser = ({ onSubmitUserForm }) => {
             id="username"
             value={userName}
             onChange={userNameChange}
-            required
           />
           {submitted && userName.trim() === '' && (
-            <div className="invalid-feedback">Username is required.</div>
+            <div className="invalid-feedback">* Nombre es requerido.</div>
           )}
         </div>
         <br />
