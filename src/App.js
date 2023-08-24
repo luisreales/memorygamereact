@@ -109,7 +109,6 @@ function App() {
   const onSubmitUserForm = (userName) => {
     localStorage.setItem('userName', userName)
     setStoreName(userName)
-    alert('User' + userName + ' saved locally')
   }
 
   return (
