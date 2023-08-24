@@ -24,7 +24,7 @@ const FormUser = ({ onSubmitUserForm }) => {
     <div className="container col-5 mt-5">
       <form onSubmit={eventSubmit}>
         <div className="form-group">
-          <label htmlFor="username">Ingrese nombre de usuario:</label>
+          <label htmlFor="username">Escribe tu nombre:</label>
           <input
             type="text"
             className={`form-control ${

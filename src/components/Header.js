@@ -5,7 +5,7 @@ Componente Header  para el manejo del encabezado titulo de bienvenida,  tablero 
 function Header({ storeName, shuffeCards, turns, matchedCount }) {
   return (
     <div>
-      <p>Bienvenido, {storeName}!</p>
+      <p>¡Hola {storeName}!</p>
       <button onClick={shuffeCards}>Nuevo Juego</button>
 
       <table className="table table-sm table-style">
