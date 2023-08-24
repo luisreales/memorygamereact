@@ -1,7 +1,19 @@
 import React from 'react'
-import { Alert } from 'react-bootstrap'
-function AlertMessage({ variant, message }) {
-  return <Alert variant={variant}>{message}</Alert>
+
+function AlertMessage({ variant, message,icon }) {
+  return (
+    <>
+      <div className="container">
+        <div className="row">
+          <div className="alert-container primary">
+            <span className="alert-text">{message}</span>
+            <span className="alert-icon">{icon}</span>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+ 
 }
 
 export default AlertMessage

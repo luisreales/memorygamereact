@@ -3,14 +3,14 @@ import './SingleCard.css'
 
 function SingleCard({ card, handleChoice, flipped, disabled }) {
   const handleClick = () => {
-    debugger
+    
     if (!disabled) {
       handleChoice(card)
     }
   }
   return (
     <div className="row">
-      <div className="col-md-6">
+      <div className="col-md-12">
         <div className="card">
           <div className={flipped ? 'flipped' : ''}>
             <img className="front" src={card.src} alt="card front" />

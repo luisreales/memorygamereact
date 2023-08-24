@@ -1,5 +1,5 @@
 .App {
-  max-width: 860px;
+  max-width: 1440px;
   margin: 40px auto;
 }
 
@@ -22,6 +22,26 @@ button:hover {
 .card-grid {
   margin-top: 40px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 20px;
 }
+
+.table-style {
+ 
+  margin-top: 10px;
+  border-radius: 5px !important;
+}
+
+.fail{
+ 
+  color: #f80053 !important;
+  font-size: 40px;
+  font-weight: 700;
+}
+.matched{
+ 
+  color: #00bc38 !important;
+  font-size: 40px;
+  font-weight: 700;
+}
+
