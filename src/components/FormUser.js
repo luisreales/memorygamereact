@@ -14,7 +14,6 @@ const FormUser = ({ onSubmitUserForm }) => {
       onSubmitUserForm(userName)
       setSubmitted(true)
       localStorage.setItem('userName', userName)
-      alert('User' + userName + ' saved locally')
     }
   }
   return (
